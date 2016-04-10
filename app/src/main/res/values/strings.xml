@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">UdooWtf</string>
+    <string name="wtf_active_sensors">Active sensors</string>
+    <string name="wtf_you_missed">Maybe you missed:</string>
 </resources>
