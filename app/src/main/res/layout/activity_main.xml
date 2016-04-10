@@ -6,11 +6,30 @@
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.wtf.udoowtf.MainActivity">
+    android:paddingTop="24dp"
+    tools:context=".BeaconsListActivity">
 
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/wtf_active_sensors"
+        android:layout_marginBottom="@dimen/activity_horizontal_margin"
+        android:id="@+id/wtf_grid_title"
+        />
+    <GridView
+        android:layout_below="@id/wtf_grid_title"
+        android:id="@+id/gridview"
+        android:numColumns="auto_fit"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:verticalSpacing="24dp"
+        android:horizontalSpacing="24dp"
+        android:gravity="center"/>
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!" />
+        android:layout_alignParentBottom="true"
+        android:text="next"
+        android:onClick="next"
+        />
 </RelativeLayout>
