@@ -7,11 +7,13 @@ public class BeaconDevice {
     private String mac;
     private String device_name;
     private String room_name;
+    private int image;
 
-    public BeaconDevice(String mac, String device_name, String room_name){
+    public BeaconDevice(String mac, String device_name, String room_name, int image){
         this.mac = mac;
         this.device_name = device_name;
         this.room_name = room_name;
+        this.image = image;
     }
 
     public String getMac(){
@@ -21,6 +23,15 @@ public class BeaconDevice {
     public String getDevice_name() {
         return device_name;
     }
+    
+      public int getImage(){
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
 
     public String getRoom_name() {
         return room_name;
