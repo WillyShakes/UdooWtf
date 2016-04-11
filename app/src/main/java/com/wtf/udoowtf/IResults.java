@@ -1,4 +1,4 @@
-package alessandromorelli.wtf;
+package com.wtf.udoowtf;
 
 import android.bluetooth.BluetoothDevice;
 

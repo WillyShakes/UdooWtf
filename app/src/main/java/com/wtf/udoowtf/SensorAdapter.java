@@ -1,7 +1,6 @@
 package com.wtf.udoowtf;
 
 import android.content.Context;
-import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,28 +8,30 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 /**
  * Created by Umberto on 09/04/2016.
  */
 public class SensorAdapter extends BaseAdapter {
 
     private final Context context;
-    private final BeaconStorage beaconStorage;
+    private final ArrayList<BeaconDevice> beaconList;
     private final int type;
-    public SensorAdapter(Context context, BeaconStorage beaconStorage, int type) {
+    public SensorAdapter(Context context, ArrayList<BeaconDevice> beaconList, int type) {
         this.context=context;
-        this.beaconStorage = beaconStorage;
+        this.beaconList = beaconList;
         this.type=type;
     }
 
     @Override
     public int getCount() {
-        return beaconStorage.getBeaconList().size();
+        return beaconList.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return beaconStorage.getBeaconList().get(position);
+        return beaconList.get(position);
     }
 
     @Override
@@ -49,7 +50,7 @@ public class SensorAdapter extends BaseAdapter {
             v = inflater.inflate(R.layout.sensor_card_big, null);
         }
         TextView wtfSensorName = (TextView) v.findViewById(R.id.wtf_sensor_name);
-        b = beaconStorage.getBeaconList().get(position);
+        b = beaconList.get(position);
         wtfSensorName.setText(b.getDevice_name());
         TextView wtfSensorRoom= (TextView) v.findViewById(R.id.wtf_sensor_room);
         wtfSensorRoom.setText(b.getRoom_name());

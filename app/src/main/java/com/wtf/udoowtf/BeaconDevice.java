@@ -24,13 +24,17 @@ public class BeaconDevice {
         return device_name;
     }
 
-    public String getRoom_name() {
-        return room_name;
+    public int getImage(){
+        return image;
     }
 
-    public int getImage()
-    {
-        return image;
+    public void setImage(int image) {
+        this.image = image;
+    }
+
+
+    public String getRoom_name() {
+        return room_name;
     }
 
     public void setMac(String mac) {

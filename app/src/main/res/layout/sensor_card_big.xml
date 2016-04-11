@@ -16,7 +16,7 @@ android:clickable="true">
     <ImageView
         android:id="@+id/wtf_sensor_image"
         android:layout_width="130dp"
-        android:layout_height="130dp"
+        android:layout_height="match_parent"
         android:src="@drawable/wtf_ic_light"
         />
 
