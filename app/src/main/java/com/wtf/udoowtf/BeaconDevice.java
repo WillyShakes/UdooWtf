@@ -23,6 +23,15 @@ public class BeaconDevice {
     public String getDevice_name() {
         return device_name;
     }
+    
+      public int getImage(){
+        return image;
+    }
+
+    public void setImage(int image) {
+        this.image = image;
+    }
+
 
     public int getImage(){
         return image;
