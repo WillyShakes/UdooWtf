@@ -53,7 +53,9 @@ public class SensorAdapter extends BaseAdapter {
         b = beaconList.get(position);
         wtfSensorName.setText(b.getDevice_name());
         TextView wtfSensorRoom= (TextView) v.findViewById(R.id.wtf_sensor_room);
+        wtfSensorRoom.setText(b.getRoom_name());
         ImageView wtfImage = (ImageView) v.findViewById(R.id.wtf_sensor_image);
+        wtfImage.setImageResource(b.getImage());
         return v;
     }
 }
