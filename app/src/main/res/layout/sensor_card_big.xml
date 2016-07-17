@@ -33,7 +33,7 @@ android:clickable="true">
         />
 
     <TextView
-        android:id="@+id/wtf_senror_room"
+        android:id="@+id/wtf_sensor_room"
         android:layout_below="@id/wtf_sensor_name"
         android:layout_toRightOf="@id/wtf_sensor_image"
         android:paddingLeft="16dp"
