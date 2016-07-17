@@ -5,6 +5,6 @@
     <item
         android:id="@+id/action_new"
         android:orderInCategory="100"
-        android:title="new"
+        android:title="settings"
         app:showAsAction="never" />
 </menu>
