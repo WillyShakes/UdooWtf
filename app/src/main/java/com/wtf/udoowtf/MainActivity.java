@@ -1,6 +1,5 @@
 package com.wtf.udoowtf;
 
-import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -11,11 +10,13 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -23,10 +24,14 @@ import android.widget.GridView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import android.support.design.widget.AppBarLayout;
+
 import junit.framework.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+
+
 
 
 /**
@@ -34,7 +39,6 @@ import java.util.List;
  */
 public class MainActivity extends AppCompatActivity {
 
-    private static final int REQUEST_ENABLE_BT = 1;
     private ListView beaconsListView;
     private ArrayAdapter arrayAdapter;
     private boolean mScanning;
@@ -46,7 +50,9 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.appbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
         mHandler = new Handler();
         beaconList = new BeaconStorage().getBeaconList();
         // sostituiamo ListView con GridView
@@ -61,47 +67,55 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
-    public void next(View view) {
-        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
-            Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        else {
-            // Stops scanning after a pre-defined scan period.
-            final BluetoothManager bluetoothManager =
-                    (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
-            final BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
-            if (!mBluetoothAdapter.isEnabled()) {
-                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
-                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
-            }
-            else {
-                scan();
-            }
-        }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
     }
 
-    private void scan() {
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if(id==R.id.action_new);
+        return true;
+    }
+
+
+    public void next(View view) {
+
+                // Stops scanning after a pre-defined scan period.
+                final BluetoothManager bluetoothManager =
+                        (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+                final BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+        if (!mBluetoothAdapter.isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        }
         mHandler.postDelayed(new Runnable() {
             @Override
             public void run() {
                 Log.d(TAG, "handler stop");
                 mScanning = false;
                 Log.d(TAG, "scaning stopped");
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        Log.d(TAG, "startActivity");
-                        NotificationsActivity.beaconList = beaconList;
-                        Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
-                        startActivity(intent);
-                    }
-                });
+                for(int i=0; i<beaconList.size(); i++){
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            Log.d(TAG, "startActivity");
+                            NotificationsActivity.beaconList = beaconList;
+                            Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                            startActivity(intent);
+                        }
+                    });
+                }
                 scanner.stopScan(scanCallback);
             }
         }, SCAN_PERIOD);
         mScanning = true;
         startScanner();
+
+
     }
 
     private void startScanner() {
@@ -148,7 +162,10 @@ public class MainActivity extends AppCompatActivity {
 
                 if (toRemove != -1) {
                     beaconList.remove(toRemove);
+
                 }
+
+
             }
         }
     };
@@ -157,19 +174,9 @@ public class MainActivity extends AppCompatActivity {
 
     // Device scan callback.
     private BluetoothAdapter.LeScanCallback mLeScanCallback;
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // TODO Auto-generated method stub
-        if(requestCode == REQUEST_ENABLE_BT){
-            if(resultCode== Activity.RESULT_OK)
-            {
-               scan();
-            }
-        }
-
-    }
 }
+
+
 
 //    public static ArrayList<String> getBeaconsNames()
 //    {
