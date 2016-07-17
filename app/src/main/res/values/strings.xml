@@ -2,4 +2,5 @@
     <string name="app_name">WhaT I Forgot</string>
     <string name="wtf_active_sensors">Paired sensors</string>
     <string name="wtf_you_missed">Maybe you missed:</string>
+    <string name="ble_not_supported">BLE not supported</string>
 </resources>

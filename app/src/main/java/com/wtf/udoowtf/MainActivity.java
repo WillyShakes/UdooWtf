@@ -1,5 +1,6 @@
 package com.wtf.udoowtf;
 
+import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothManager;
@@ -10,6 +11,7 @@ import android.bluetooth.le.ScanResult;
 import android.bluetooth.le.ScanSettings;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
     private static final String TAG = Test.class.getSimpleName();
     Handler mHandler;
     private BluetoothLeScanner scanner;
+    private static final int REQUEST_ENABLE_BT = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,9 +83,62 @@ public class MainActivity extends AppCompatActivity {
         if(id==R.id.action_new);
         return true;
     }
-
-
     public void next(View view) {
+        if (!getPackageManager().hasSystemFeature(PackageManager.FEATURE_BLUETOOTH_LE)) {
+            Toast.makeText(this, R.string.ble_not_supported, Toast.LENGTH_SHORT).show();
+            finish();
+        }
+        else {
+            // Stops scanning after a pre-defined scan period.
+            final BluetoothManager bluetoothManager =
+                    (BluetoothManager) getSystemService(Context.BLUETOOTH_SERVICE);
+            final BluetoothAdapter mBluetoothAdapter = bluetoothManager.getAdapter();
+            if (!mBluetoothAdapter.isEnabled()) {
+                Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+                startActivityForResult(enableBtIntent, REQUEST_ENABLE_BT);
+            }
+            else {
+                scan();
+            }
+        }
+    }
+
+    private void scan() {
+        mHandler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Log.d(TAG, "handler stop");
+                mScanning = false;
+                Log.d(TAG, "scaning stopped");
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d(TAG, "startActivity");
+                        NotificationsActivity.beaconList = beaconList;
+                        Intent intent = new Intent(MainActivity.this, NotificationsActivity.class);
+                        startActivity(intent);
+                    }
+                });
+                scanner.stopScan(scanCallback);
+            }
+        }, SCAN_PERIOD);
+        mScanning = true;
+        startScanner();
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        // TODO Auto-generated method stub
+        if(requestCode == REQUEST_ENABLE_BT){
+            if(resultCode== Activity.RESULT_OK)
+            {
+                scan();
+            }
+        }
+
+    }
+
+    /*public void next(View view) {
 
                 // Stops scanning after a pre-defined scan period.
                 final BluetoothManager bluetoothManager =
@@ -116,7 +172,7 @@ public class MainActivity extends AppCompatActivity {
         startScanner();
 
 
-    }
+    }*/
 
     private void startScanner() {
         BluetoothManager bluetoothManager = (BluetoothManager) getSystemService(MainActivity.BLUETOOTH_SERVICE);
