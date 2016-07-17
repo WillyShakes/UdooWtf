@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?xml version="1.0" encoding="utf-8"?>
 <android.support.v7.widget.CardView
 xmlns:android="http://schemas.android.com/apk/res/android"
@@ -53,3 +54,60 @@ android:clickable="true">
 
 </RelativeLayout>
 </android.support.v7.widget.CardView>
+=======
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+xmlns:android="http://schemas.android.com/apk/res/android"
+android:layout_width="match_parent"
+android:layout_height="130dp"
+android:paddingStart="0dp"
+android:paddingEnd="0dp"
+android:foreground="?android:attr/selectableItemBackground"
+android:clickable="true">
+
+<RelativeLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal">
+
+    <ImageView
+        android:id="@+id/wtf_sensor_image"
+        android:layout_width="130dp"
+        android:layout_height="match_parent"
+        android:src="@drawable/wtf_ic_light"
+        />
+
+    <TextView
+        android:id="@+id/wtf_sensor_name"
+        android:layout_toRightOf="@id/wtf_sensor_image"
+        android:paddingTop="16dp"
+        android:paddingLeft="16dp"
+        android:textStyle="bold"
+        android:textColor="@android:color/black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light"
+        />
+
+    <TextView
+        android:id="@+id/wtf_sensor_room"
+        android:layout_below="@id/wtf_sensor_name"
+        android:layout_toRightOf="@id/wtf_sensor_image"
+        android:paddingLeft="16dp"
+        android:paddingTop="8dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Light"
+        />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_more_vert"
+        android:background="@null"/>
+
+</RelativeLayout>
+</android.support.v7.widget.CardView>
+>>>>>>> wtf/master
