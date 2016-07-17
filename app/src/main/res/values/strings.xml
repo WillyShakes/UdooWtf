@@ -1,13 +1,5 @@
-<<<<<<< HEAD
 <resources>
-    <string name="app_name">UdooWtf</string>
-    <string name="wtf_active_sensors">Active sensors</string>
+    <string name="app_name">WhaT I Forgot</string>
+    <string name="wtf_active_sensors">Paired sensors</string>
     <string name="wtf_you_missed">Maybe you missed:</string>
 </resources>
-=======
-<resources>
-    <string name="app_name">UdooWtf</string>
-    <string name="wtf_active_sensors">Active sensors</string>
-    <string name="wtf_you_missed">Maybe you missed:</string>
-</resources>
->>>>>>> wtf/master
