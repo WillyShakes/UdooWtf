@@ -1,6 +1,6 @@
 # WhaTiForgot
 
-[wtf-logo](https://github.com/gmacario/wtf-docs/blob/master/images/logowtf.jpg)
+[wtf-logo](logowtf.jpg)
 
 This project was born to compete at a the Droidcon's hackathon v2016. It was sponsored by AAL and the main topic was improving eldest people's life.
 The project is based on beacons.
