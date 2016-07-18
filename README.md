@@ -1,8 +1,6 @@
-# WhaTiForgot
-
 ![wtf-logo](logowtf.jpg)
 
-This project was born to compete at a the Droidcon's hackathon v2016. It was sponsored by AAL and the main topic was improving eldest people's life.
+WTF project was born to compete at a the Droidcon's hackathon v2016. It was sponsored by AAL and the main topic was improving eldest people's life.
 The project is based on beacons.
 For more infos visit https://github.com/gmacario/wtf-docs
 
