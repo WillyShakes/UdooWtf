@@ -1,7 +1,10 @@
-# UdooWtf HackatonVer
-This is the WhaTIForget app version shown at Hackathon DroidconIT Torino 2016.
+# WhaTiForgot
 
-###Honours
+This project was born to compete at a the Droidcon's hackathon v2016. It was sponsored by AAL and the main topic was improving eldest people's life.
+The project is based on beacons.
+For more infos visit https://github.com/gmacario/wtf-docs
+
+###Honours @DroidconHackathon2016
 - Best android application for the wellbeing, security or aspirations of elderly people.
 - Best project using all sponsor's tools and quests:
   - development of IoT projects that involve Bluetooth Low Energy devices controlled by UDOO, the Android-enabled embedded platform.
